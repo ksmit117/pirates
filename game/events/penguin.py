@@ -8,7 +8,7 @@ class Penguin(Context, event.Event):
     '''Encounter with a penguin. Uses the parser to decide what to do about it.'''
     def __init__ (self):
         super().__init__()
-        self.name = "Penguin name Gunter"
+        self.name = "Penguin named Gunter"
         self.Penguin  = 1
         self.verbs['Swim'] = self
         self.verbs['feed'] = self
@@ -21,25 +21,25 @@ class Penguin(Context, event.Event):
             self.go = True
             r = random.randint(1,10)
             if (r < 5):
-                self.result["message"] = "the seagulls fly off."
+                self.result["message"] = "the penguin will swim away."
                 if (self.Penguin > 1):
                     self.Penguin = self.Penguin - 1
             else:
                 c = random.choice(config.the_player.get_pirates())
                 if (c.isLucky() == True):
-                    self.result["message"] = "luckly, the seagulls fly off."
+                    self.result["message"] = "luckly, the penguin swam away."
                 else:
-                    self.result["message"] = c.get_name() + " is attacked by the seagulls."
-                    if (c.inflict_damage (self.seagulls, "Pecked to death by seagulls")):
-                        self.result["message"] = ".. " + c.get_name() + " is pecked to death by the seagulls!"
+                    self.result["message"] = c.get_name() + " is targeted by a magical penguin."
+                    if (c.inflict_damage (self.seagulls, "Pecked to death by penguin")):
+                        self.result["message"] = ".. " + c.get_name() + " is pecked to death by the penguins!"
 
         elif (verb == "feed"):
             self.Penguin = self.Penguin + 1
             self.result["newevents"].append (Penguin())
-            self.result["message"] = "the seagulls are happy"
+            self.result["message"] = "the penguins are happy"
             self.go = True
         elif (verb == "help"):
-            print ("the seagulls will pester you until you feed them or chase them off")
+            print ("the penguin will hunt you down unless you feed him")
             self.go = False
         else:
             print ("it seems the only options here are to feed or chase")
@@ -55,7 +55,7 @@ class Penguin(Context, event.Event):
         self.result["message"] = "default message"
 
         while (self.go == False):
-            print (str (self.seagulls) + " seagulls has appeared what do you want to do?")
+            print (str (self.Penguin) + " Penguin Gunter has appeared what do you want to do?")
             Player.get_interaction ([self])
 
         return self.result
