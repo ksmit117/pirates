@@ -57,15 +57,17 @@ class World (context.Context):
         # Peaceful island directly to the right of the spawning location.
         peacefulIsland = PeacefulIsland.PeacefulIsland(self.startx + 1, self.starty, self)
         self.locs[self.startx + 1][self.starty] = peacefulIsland
+        
 
         self.events = []
-        self.events.append (lucky.LuckyDay())
-        self.events.append (nothing.Nothing())
-        self.events.append (seagull.Seagull())
-        self.events.append (seagull.Seagull())
-        self.events.append (seagull.Seagull())
-        self.events.append (sickness.Sickness())
-        self.events.append (drowned_pirates.DrownedPirates())
+        # self.events.append (lucky.LuckyDay())
+        # self.events.append (nothing.Nothing())
+        # self.events.append (seagull.Seagull())
+        # self.events.append (seagull.Seagull())
+        # self.events.append (seagull.Seagull())
+        # self.events.append (sickness.Sickness())
+        # self.events.append (drowned_pirates.DrownedPirates())
+        self.events.append (riddler.Riddler())
         self.nouns["world"] = self
 
     def get_day (self):

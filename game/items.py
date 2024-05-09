@@ -85,3 +85,13 @@ class Flintlock(Item):
         self.skill = "guns"
         self.verb = "shoot"
         self.verb2 = "shoots"
+
+class Sword(Item):
+    def __init__(self):
+        super.__init__("sword", 400)
+        self.damage = (20, 125)
+        self.skill = "slash"
+        self.verb = "hit"
+        self.verb2 = "double slash"
+        
+
